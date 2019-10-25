@@ -92,6 +92,42 @@ case "*1*2*2*2":
 $output="Booking cancelled.";
 break;
 //[END] destination nairobi
+
+//[START] destination kisumu
+case "*1*3":
+$output ="Select pick point\n";
+$output .="1. Nairobi\n";
+$output .="2. Mombasa\n";
+break;
+//from nairobi
+case "*1*3*1":
+$output ="Fare from Nairobi to Kisumu is 1200\n";
+$output.="1.Complete\n";
+$output.="2.Cancel";
+break;
+//from kisumu
+case "*1*3*2":
+$output ="Fare from Mombasa to Kisumu is 2200\n";
+$output .="1.Complete\n";
+$output .="2.Cancel";
+break;
+//insert data nairobi kisumu
+case "*1*3*1*1":
+$output= book_bus("Kisumu","Nairobi",$phone,$connection);
+break;
+//insert data mombasa kisumu
+case "*1*3*2*1":
+$output=book_bus("Kisumu","Mombasa",$phone,$connection);
+break;
+//cancel 
+case "*1*3*1*2":
+$output="Booking cancelled.";
+break;
+case "*1*3*2*2":
+$output="Booking cancelled.";
+break;
+
+//[END] destination kisumu
 }
 
 
