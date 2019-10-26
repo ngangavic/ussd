@@ -34,13 +34,14 @@ curl_setopt($curl, CURLOPT_POST, true);
 curl_setopt($curl, CURLOPT_POSTFIELDS, $data_string);
 
 $curl_response = curl_exec($curl);
-print_r($curl_response);
+//print_r($curl_response);
 
 //display result
 //echo $curl_response;
 
 $callbackJSONData=file_get_contents('php://input');
         $callbackData=json_decode($callbackJSONData);
+        echo $callbackData;
         $resultCode=$callbackData->Body->stkCallback->ResultCode;
         if($resultCode==0){
 //insert to db

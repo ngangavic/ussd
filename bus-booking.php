@@ -1,6 +1,7 @@
 <?php
 /******Bus booking ussd systsem******/
-require "connection.php";
+require "connection.php"; 
+require "stk-push.php";
 
 $phone=$_GET['phonenumber'];
 $text=$_GET['text'];
