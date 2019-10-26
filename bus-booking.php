@@ -43,11 +43,13 @@ $output .="2.Cancel";
 break;
 //insert data nairobi mombasa
 case "*1*1*1*1":
-$output= book_bus("Mombasa","Nairobi",$phone,$connection);
+//$output= book_bus("Mombasa","Nairobi",$phone,$connection);
+$output=stkpush("Mombasa","Nairobi",$phone,$connection,"1400");
 break;
 //insert data kisumu mombasa
 case "*1*1*2*1":
-$output=book_bus("Mombasa","Kisumu",$phone,$connection);
+//$output=book_bus("Mombasa","Kisumu",$phone,$connection);
+$output=stkpush("Mombasa","Kisumu",$phone,$connection,"2200");
 break;
 //cancel 
 case "*1*1*1*2":
@@ -78,11 +80,13 @@ $output .="2.Cancel";
 break;
 //insert data mombasa nairobi
 case "*1*2*1*1":
-$output= book_bus("Nairobi","Mombasa",$phone,$connection);
+//$output= book_bus("Nairobi","Mombasa",$phone,$connection);
+$output=stkpush("Nairobi","Mombasa",$phone,$connection,"1400");
 break;
 //insert data kisumu nairobi
 case "*1*2*2*1":
-$output=book_bus("Nairobi","Kisumu",$phone,$connection);
+//$output=book_bus("Nairobi","Kisumu",$phone,$connection);
+$output=stkpush("Nairobi","Kisumu",$phone,$connection,"1200");
 break;
 //cancel 
 case "*1*2*1*2":
@@ -113,11 +117,13 @@ $output .="2.Cancel";
 break;
 //insert data nairobi kisumu
 case "*1*3*1*1":
-$output= book_bus("Kisumu","Nairobi",$phone,$connection);
+//$output= book_bus("Kisumu","Nairobi",$phone,$connection);
+$output=stkpush("Kisumu","Nairobi",$phone,$connection,"1200");
 break;
 //insert data mombasa kisumu
 case "*1*3*2*1":
-$output=book_bus("Kisumu","Mombasa",$phone,$connection);
+//$output=book_bus("Kisumu","Mombasa",$phone,$connection);
+$output=stkpush("Kisumu","Mombasa",$phone,$connection,"2200");
 break;
 //cancel 
 case "*1*3*1*2":
@@ -133,14 +139,14 @@ break;
 
 echo $output;
 
-function book_bus($destination,$pickpoint,$phone,$connection){
-$stmt=$connection->prepare("INSERT INTO tbl_booking(destination,pickpoint,phone)VALUES(?,?,?)");
-$stmt->bind_param("sss",$destination,$pickpoint,$phone);
-if(!$stmt->execute()){
- return   $output="Booking failed";
-}else{
-  return  $output="Booking success";
-}
-}
+// function book_bus($destination,$pickpoint,$phone,$connection){
+// $stmt=$connection->prepare("INSERT INTO tbl_booking(destination,pickpoint,phone)VALUES(?,?,?)");
+// $stmt->bind_param("sss",$destination,$pickpoint,$phone);
+// if(!$stmt->execute()){
+//  return   $output="Booking failed";
+// }else{
+//   return  $output="Booking success";
+// }
+// }
 
 ?>
