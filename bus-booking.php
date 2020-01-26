@@ -1,10 +1,18 @@
 <?php
 /******Bus booking ussd systsem******/
+session_start();
 require "connection.php"; 
 require "stk-push.php";
 
+
+if(isset($_GET['phonenumber'])){
 $phone=$_GET['phonenumber'];
 $text=$_GET['text'];
+
+$_SESSION['id']=md5($phone);
+$_SESSION['phone']=$phone;
+
+if(isset($_SESSION['id'])&&isset($_SESSION['phone'])){
 
 switch($text){
 case "":
@@ -135,6 +143,11 @@ $output="Booking cancelled.";
 break;
 
 //[END] destination kisumu
+}
+}else{
+    $output="Application error.";
+}}else{
+    $output="Please provide a phonenumber";
 }
 
 
