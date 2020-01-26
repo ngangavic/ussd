@@ -1,9 +1,9 @@
 <?php
+error_reporting(0);
 /******Bus booking ussd systsem******/
 session_start();
 require "connection.php"; 
 require "stk-push.php";
-
 
 if(isset($_GET['phonenumber'])){
 $phone=$_GET['phonenumber'];
