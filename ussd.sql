@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 25, 2019 at 10:48 PM
+-- Generation Time: Jan 26, 2020 at 06:50 PM
 -- Server version: 10.4.6-MariaDB
 -- PHP Version: 7.3.8
 
@@ -30,6 +30,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `tbl_booking` (
   `id` int(11) NOT NULL,
+  `ssid` varchar(100) DEFAULT NULL,
   `destination` varchar(20) NOT NULL,
   `pickpoint` varchar(20) NOT NULL,
   `phone` varchar(20) NOT NULL,
