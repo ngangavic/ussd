@@ -6,6 +6,7 @@ require "connection.php";
 require "stk-push.php";
 
 if(isset($_GET['phonenumber'])){
+
 $phone=$_GET['phonenumber'];
 $text=$_GET['text'];
 
@@ -53,12 +54,12 @@ break;
 //insert data nairobi mombasa
 case "*1*1*1*1":
 //$output= book_bus("Mombasa","Nairobi",$phone,$connection);
-$output=stkpush("Mombasa","Nairobi",$phone,$connection,"1400");
+$output=stkpush("Mombasa","Nairobi",$phone,$connection,"1400",$_SESSION['id']);
 break;
 //insert data kisumu mombasa
 case "*1*1*2*1":
 //$output=book_bus("Mombasa","Kisumu",$phone,$connection);
-$output=stkpush("Mombasa","Kisumu",$phone,$connection,"2200");
+$output=stkpush("Mombasa","Kisumu",$phone,$connection,"2200",$_SESSION['id']);
 break;
 //cancel 
 case "*1*1*1*2":
@@ -90,12 +91,12 @@ break;
 //insert data mombasa nairobi
 case "*1*2*1*1":
 //$output= book_bus("Nairobi","Mombasa",$phone,$connection);
-$output=stkpush("Nairobi","Mombasa",$phone,$connection,"1400");
+$output=stkpush("Nairobi","Mombasa",$phone,$connection,"1400",$_SESSION['id']);
 break;
 //insert data kisumu nairobi
 case "*1*2*2*1":
 //$output=book_bus("Nairobi","Kisumu",$phone,$connection);
-$output=stkpush("Nairobi","Kisumu",$phone,$connection,"1200");
+$output=stkpush("Nairobi","Kisumu",$phone,$connection,"1200",$_SESSION['id']);
 break;
 //cancel 
 case "*1*2*1*2":
@@ -127,12 +128,12 @@ break;
 //insert data nairobi kisumu
 case "*1*3*1*1":
 //$output= book_bus("Kisumu","Nairobi",$phone,$connection);
-$output=stkpush("Kisumu","Nairobi",$phone,$connection,"1200");
+$output=stkpush("Kisumu","Nairobi",$phone,$connection,"1200",$_SESSION['id']);
 break;
 //insert data mombasa kisumu
 case "*1*3*2*1":
 //$output=book_bus("Kisumu","Mombasa",$phone,$connection);
-$output=stkpush("Kisumu","Mombasa",$phone,$connection,"2200");
+$output=stkpush("Kisumu","Mombasa",$phone,$connection,"2200",$_SESSION['id']);
 break;
 //cancel 
 case "*1*3*1*2":
@@ -146,21 +147,9 @@ break;
 }
 }else{
     $output="Application error.";
-}}else{
+}
+}else{
     $output="Please provide a phonenumber";
 }
 
-
 echo $output;
-
-// function book_bus($destination,$pickpoint,$phone,$connection){
-// $stmt=$connection->prepare("INSERT INTO tbl_booking(destination,pickpoint,phone)VALUES(?,?,?)");
-// $stmt->bind_param("sss",$destination,$pickpoint,$phone);
-// if(!$stmt->execute()){
-//  return   $output="Booking failed";
-// }else{
-//   return  $output="Booking success";
-// }
-// }
-
-?>
