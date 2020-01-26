@@ -1,6 +1,6 @@
 <?php
 
-function stkpush($destination,$pickpoint,$phone,$connection,$amount){
+function stkpush($destination,$pickpoint,$phone,$connection,$amount,$ssid){
     require "access-token.php";//access token
 $url = 'https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest';//sktpush url
 $BusinessShortCode='174379';//shortcode
@@ -23,7 +23,7 @@ $curl_post_data = array(
     'PartyB' => '174379',//The organization shortcode receiving the funds
     'PhoneNumber' => $phone,//The MSISDN sending the funds.
     'CallBackURL' => 'http://jochebedscrib.org/victor/callback.php',//The url to where logs from M-Pesa will be sent to.
-    'AccountReference' => 'bus001',//Used with M-Pesa PayBills.
+    'AccountReference' => $ssid,//Used with M-Pesa PayBills.
     'TransactionDesc' => 'bus booking ussd'//A description of the transaction.
 );
 
@@ -45,8 +45,8 @@ $callbackJSONData=file_get_contents('php://input');
         $resultCode=$callbackData->Body->stkCallback->ResultCode;
         if($resultCode==0){
 //insert to db
-$stmt=$connection->prepare("INSERT INTO tbl_booking(destination,pickpoint,phone)VALUES(?,?,?)");
-$stmt->bind_param("sss",$destination,$pickpoint,$phone);
+$stmt=$connection->prepare("INSERT INTO tbl_booking(ssid,destination,pickpoint,phone)VALUES(?,?,?,?)");
+$stmt->bind_param("ssss",$ssid,$destination,$pickpoint,$phone);
 if(!$stmt->execute()){
  return   $output="Booking failed";
 }else{
